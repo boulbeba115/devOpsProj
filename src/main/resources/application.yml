@@ -8,7 +8,7 @@ security:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/store_manager_db
+    url: jdbc:mysql://localhost:3306/store_manager_db?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
     username: root
     password:
   jpa:
