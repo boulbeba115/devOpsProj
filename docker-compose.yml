@@ -1,0 +1,36 @@
+version: "3.3"
+volumes:
+  my-volume:
+    external: true
+networks:
+  mt-network:
+    driver: bridge    
+services:
+  mydb:
+    image: mysql
+    container_name: storeMangerDb
+    ports:
+      - 3306:3306
+    security_opt:
+      - seccomp:unconfined  
+    networks:
+      - mt-network      
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=store_manager_db
+    volumes:
+      - my-volume:/var/lib/mysql
+  backend:
+    build: .
+    container_name: store_manager
+    ports:
+      - 8090:8090  
+    networks:
+      - mt-network
+    environment:
+      - SPRING.DATASOURCE.USERNAME=root
+      - SPRING.DATASOURCE.PASSWORD=
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mydb:3306/store_manager_db
+      - MYSQL_DATABASE=miniproj   
+    depends_on:
+      - mydb 

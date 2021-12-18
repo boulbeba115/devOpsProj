@@ -1,0 +1,32 @@
+management:
+    security:
+        enabled: false
+security:
+    basic:
+        enabled: false
+    
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/store_manager_db
+    username: root
+    password:
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true      
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+                  
+server:
+    servlet.contextPath: /store-management
+    port: 8065
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        min-response-size: 1024 
+
+
