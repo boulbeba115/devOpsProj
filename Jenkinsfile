@@ -91,6 +91,27 @@ pipeline{
             docker-compose up -d '''
             }
         }
+        timeout(time: 600, unit: 'SECONDS') {
+            stage('Check Availability') {
+              steps {             
+                  waitUntil {
+                      retry(3) {
+                          try {         
+                              sh "curl -s --head  --request GET  http://localhost:8090/store-management/health | grep '200'"
+                              return true
+                          } catch (Exception e) {
+                             sh '''
+                            docker-compose down
+                            docker-compose build
+                            docker-compose up -d '''
+                            }
+                            return false
+                      }
+                    }
+                  }
+               }
+           }
+        }
         stage('Push') {
 
 			steps {
