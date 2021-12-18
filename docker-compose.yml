@@ -31,6 +31,6 @@ services:
       - SPRING.DATASOURCE.USERNAME=root
       - SPRING.DATASOURCE.PASSWORD=
       - SPRING_DATASOURCE_URL=jdbc:mysql://mydb:3306/store_manager_db
-      - MYSQL_DATABASE=miniproj   
+      - MYSQL_DATABASE=store_manager_db   
     depends_on:
       - mydb 
