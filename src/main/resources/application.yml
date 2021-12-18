@@ -23,7 +23,7 @@ spring:
                   
 server:
     servlet.contextPath: /store-management
-    port: 8065
+    port: 8090
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
