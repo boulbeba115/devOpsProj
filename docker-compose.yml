@@ -1,4 +1,7 @@
 version: "3.3"
+volumes:
+  my-volume:
+    external: false
 networks:
   mt-network:
     driver: bridge    
